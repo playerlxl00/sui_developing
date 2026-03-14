@@ -1,2 +1,2 @@
 # sui_developing
-Providing dual language sui developing resources sharing, including translating official tutorial and sharing my own learning notes, mainly for beginners in Japan and China
+Providing Windows sui developing guides, based on sui official website which is https://docs.sui.io/guides
