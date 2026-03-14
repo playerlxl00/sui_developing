@@ -1,1 +1,6 @@
+Step 1: Install sui
+choco install sui
 
+Step 2: Install Rust (If installed already plz check if it has been updated to the latest version)
+
+Step 3: Install Cargo
