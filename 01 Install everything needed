@@ -1,6 +1,13 @@
 Step 1: Install sui
 choco install sui
 
-Step 2: Install Rust (If installed already plz check if it has been updated to the latest version)
+Step 2: Install Rust & Cargo
+Go to https://www.rust-lang.org/tools/install
 
-Step 3: Install Cargo
+If already installed plz check if it has been updated to the latest version:
+rustup update stable
+
+To check if they are installed successfully:
+Close and reopen your powershell and
+rustc --version
+cargo --version
