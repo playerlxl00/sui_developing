@@ -1,0 +1,27 @@
+# This is to build a self-owned, free sui test environment
+
+# Starting the local network (If wanting to stop, Ctrl+C)
+sui start --with-faucet
+
+# Create a new terminal
+
+# 1. Check current environment
+sui client envs
+
+# 2. Create local environment (pointing to local network)
+sui client new-env --alias local --rpc http://127.0.0.1:9000
+
+# 3. Switch to local environment
+sui client switch --env local
+
+# 4. Create a new address (Needed when using firstly)
+sui client new-address ed25519
+
+# 5. Check active addresses
+sui client active-address
+
+# 6. Get testing coins from the faucet
+sui client faucet
+
+# 7. Wait for a few seconds and checking coins gotten
+sui client gas
