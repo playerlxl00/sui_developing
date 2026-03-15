@@ -1,0 +1,8 @@
+# Firslty entering
+sui client
+
+# If you don't have a client.yaml file yet, you will be asked if you want to create the client.yaml file, select Y or press enter
+
+# When you already have a client.yaml file, you will get the same output when entering each one of the following
+sui client
+sui client --help
