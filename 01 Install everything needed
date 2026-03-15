@@ -1,6 +1,9 @@
 # Step 1: Install sui
 choco install sui
 
+# To check if it's installed successfully
+sui --version
+
 # Step 2: Install Rust & Cargo
 Go to https://www.rust-lang.org/tools/install
 
