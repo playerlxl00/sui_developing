@@ -17,6 +17,16 @@ sui client switch --env local
 # 4. Create a new address (Needed when using firstly)
 sui client new-address ed25519
 
+# This command specifies the key pair scheme to be of type ed25519.
+
+# The options are:
+
+# ed25519: Small key size and compact signatures.
+
+# secp256k1: Provides security through generating and verifying keys using ECDSA.
+
+# secp256r1: Uses randomly generated curves to generate keys.
+
 # 5. Check active addresses
 sui client active-address
 
