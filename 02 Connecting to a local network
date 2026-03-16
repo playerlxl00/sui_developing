@@ -27,11 +27,30 @@ sui client new-address ed25519
 
 # secp256r1: Uses randomly generated curves to generate keys.
 
-# 5. Check active addresses
+# 5. Check all addresses
+sui client addresses
+
+# To update the alias to something else, use the command
+
+sui keytool update-alias <OLD-ALIAS> <NEW-ALIAS>
+
+# 6. Check details of all addresses
+sui keytool list
+
+# 7. Check active address
 sui client active-address
 
-# 6. Get testing coins from the faucet (Note that these coins are only sent to active addresses)
+# Change active address
+sui client switch --address <ADDRESS>
+
+# 8. Get testing coins from the faucet (Note that these coins are only sent to active addresses)
 sui client faucet
 
-# 7. Wait for a few seconds and checking coins gotten
+# 9. Wait for a few seconds and checking coins gotten
 sui client gas
+
+# 10. Check objects of addresses (If an address is not provided, this command returns all objects owned by the active address)
+sui client objects <ADDRESS>
+
+# 11. To recover an address using the recovery phrase, use the command ('Replace '<RECOVERY_PHRASE>' with your 12-word recovery phrase. The entire recovery phrase must be enclosed in single quotation marks '. You must enter the words in the correct order.Replace <KEY_SCHEME> with the type of encryption used to originally create the address, such as ed25519.If successful, the CLI restores your address and prints it in the CLI output')
+sui keytool import '<RECOVERY_PHRASE>' <KEY_SCHEME>
