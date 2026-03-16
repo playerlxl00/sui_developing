@@ -30,7 +30,7 @@ sui client new-address ed25519
 # 5. Check active addresses
 sui client active-address
 
-# 6. Get testing coins from the faucet
+# 6. Get testing coins from the faucet (Note that these coins are only sent to active addresses)
 sui client faucet
 
 # 7. Wait for a few seconds and checking coins gotten
