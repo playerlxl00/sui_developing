@@ -46,11 +46,16 @@ sui client switch --address <ADDRESS>
 # 8. Get testing coins from the faucet (Note that these coins are only sent to active addresses)
 sui client faucet
 
+# You may also require coins from https://faucet.sui.io/
+
 # 9. Wait for a few seconds and checking coins gotten
 sui client gas
 
-# 10. Check objects of addresses (If an address is not provided, this command returns all objects owned by the active address)
+# 10. Check balance of active address
+sui client balance
+
+# 11. Check objects of addresses (If an address is not provided, this command returns all objects owned by the active address)
 sui client objects <ADDRESS>
 
-# 11. To recover an address using the recovery phrase, use the command ('Replace '<RECOVERY_PHRASE>' with your 12-word recovery phrase. The entire recovery phrase must be enclosed in single quotation marks '. You must enter the words in the correct order.Replace <KEY_SCHEME> with the type of encryption used to originally create the address, such as ed25519.If successful, the CLI restores your address and prints it in the CLI output')
+# 12. To recover an address using the recovery phrase, use the command ('Replace '<RECOVERY_PHRASE>' with your 12-word recovery phrase. The entire recovery phrase must be enclosed in single quotation marks '. You must enter the words in the correct order.Replace <KEY_SCHEME> with the type of encryption used to originally create the address, such as ed25519.If successful, the CLI restores your address and prints it in the CLI output')
 sui keytool import '<RECOVERY_PHRASE>' <KEY_SCHEME>
