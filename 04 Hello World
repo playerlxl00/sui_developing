@@ -1,0 +1,11 @@
+# start by cloning the "Hello, World!" example:
+
+git clone https://github.com/MystenLabs/sui-stack-hello-world.git
+cd sui-stack-hello-world/move/hello-world
+
+# In sui-stack-hello-world/move/hello-world/Move.toml, find [dependencies] part, change rev = "framework/testnet" to rev = "testnet" (for matching requirement of new version)
+
+# Initialize the Git configuration
+git config --global user.name "Your name"  // just name you want to present in code submission report
+git config --global user.email "Youremail@example.com"
+
