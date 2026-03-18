@@ -9,3 +9,14 @@ cd sui-stack-hello-world/move/hello-world
 git config --global user.name "Your name"  // just name you want to present in code submission report
 git config --global user.email "Youremail@example.com"
 
+# Build the Move package
+sui move build
+# Only when it shows sth like below it is successful
+# INCLUDING DEPENDENCY Bridge
+# INCLUDING DEPENDENCY SuiSystem
+# INCLUDING DEPENDENCY Sui
+# INCLUDING DEPENDENCY MoveStdlib
+# BUILDING hello_world
+
+# Publish the Move package (After you publish it, other packages and users can use the package's modules and functions by making calls to the package ID)
+sui client active-env
