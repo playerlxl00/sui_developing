@@ -1,5 +1,5 @@
 # Step 1: Install sui (We use suiup to install is for more conveniently updating sui)
-# 1. Install suiup
+# Install suiup
 cargo install --git https://github.com/MystenLabs/suiup.git --locked
 
 suiup install sui@testnet   # Install testnet
@@ -13,12 +13,35 @@ suiup show
 #   sui@devnet-1.41.0
 #   sui@mainnet-1.39.0
 
+# If you haven't set your path yet, your terminal will show:
+# WARNING: [] is not in your PATH
+# And you only have to follow instructions in your terminal like this:
+
+# To add it to your PATH:
+# 1. Press Win + X and select 'System'
+# 2. Click on 'Advanced system settings (might find it on the right side)'
+# 3. Click on 'Environment Variables'
+# 4. Under 'User variables', find and select 'Path'
+# 5. Click 'Edit'
+# 6. Click 'New'
+# 7. Add the following path:
+    []
+# 8. Click 'OK' on all windows
+# 9. Restart your terminal
+
+# If you already have another sui in your computer, just move this one above the old one in the path
+
 # You can switch the default one at any time
 suiup default set sui@mainnet  # Switch to mainnet
 sui --version  # Now it's mainnet
 
 suiup default set sui@testnet  # Switch to testnet
 sui --version  # Now it's testnet
+
+# If you want to update your sui
+suiup update sui@testnet
+suiup update sui@mainnet
+suiup update sui@devnet
 
 # Step 2: Install Rust & Cargo
 Go to https://www.rust-lang.org/tools/install
