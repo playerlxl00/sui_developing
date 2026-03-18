@@ -18,5 +18,21 @@ sui move build
 # INCLUDING DEPENDENCY MoveStdlib
 # BUILDING hello_world
 
+# Build a testnet
+sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
+
+# Check all of your envs
+sui client envs
+
 # Publish the Move package (After you publish it, other packages and users can use the package's modules and functions by making calls to the package ID)
 sui client active-env
+# If the return is not 'testnet'
+sui client switch --env testnet
+
+# Check your balance of SUI tokens
+sui client balance
+# If you do not have a balance, follow the SUI faucet instructions
+
+# Now, publish the package to Testnet with the command:
+sui client publish
+
