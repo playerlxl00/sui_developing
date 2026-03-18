@@ -44,9 +44,9 @@ sui client active-address
 sui client switch --address <ADDRESS>
 
 # 8. Get testing coins from the faucet (Note that these coins are only sent to active addresses)
-sui client faucet
+sui client faucet # local env
 
-# You may also require coins from https://faucet.sui.io/   (And if there are unused tokens, you may also return them in this website, for The faucet drains from a finite pool of SUI. If the pool empties, it disrupts faucet service for the rest of the community, thanks!)
+# You may require coins from https://faucet.sui.io/   # testnet (And if there are unused tokens, you may also return them in this website, for The faucet drains from a finite pool of SUI. If the pool empties, it disrupts faucet service for the rest of the community, thanks!)
 
 # 9. Wait for a few seconds and checking coins gotten
 sui client gas
