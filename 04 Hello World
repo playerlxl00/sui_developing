@@ -3,7 +3,7 @@
 git clone https://github.com/MystenLabs/sui-stack-hello-world.git
 cd sui-stack-hello-world/move/hello-world
 
-# In sui-stack-hello-world/move/hello-world/Move.toml, find [dependencies] part, change rev = "framework/testnet" to rev = "testnet" (for matching requirement of new version)
+# In sui-stack-hello-world/move/hello-world/Move.toml, find [dependencies] section, comment it out (bcz new versions of sui has already automatically added these dependencies, if we manually add again, they will conflict so that our subsequent operations will fail)
 
 # Initialize the Git configuration
 git config --global user.name "Your name"  // just name you want to present in code submission report
