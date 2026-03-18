@@ -1,8 +1,24 @@
-# Step 1: Install sui
-choco install sui
+# Step 1: Install sui (We use suiup to install is for more conveniently updating sui)
+# 1. Install suiup
+cargo install --git https://github.com/MystenLabs/suiup.git --locked
 
-# To check if it's installed successfully
-sui --version
+suiup install sui@testnet   # Install testnet
+suiup install sui@devnet    # Install devnet  
+suiup install sui@mainnet   # Install mainnet
+
+# Check all versions installed
+suiup show
+# Something like these show up
+#   sui@testnet-1.40.0
+#   sui@devnet-1.41.0
+#   sui@mainnet-1.39.0
+
+# You can switch the default one at any time
+suiup default set sui@mainnet  # Switch to mainnet
+sui --version  # Now it's mainnet
+
+suiup default set sui@testnet  # Switch to testnet
+sui --version  # Now it's testnet
 
 # Step 2: Install Rust & Cargo
 Go to https://www.rust-lang.org/tools/install
