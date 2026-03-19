@@ -42,3 +42,4 @@ sui client call --package <PACKAGE_ID> --module greeting --function new
 # To verify that the object contains the text "Hello world!", make a call to query the object's information (Replace <OBJECT_ID> with the value under Created Objects, ID)
 sui client object <OBJECT_ID>
 
+# Up till now, you may check your object on suiscan, testnet: https://suiscan.xyz/testnet/home. In 'Fields' section, you will see your text, which is a milestone of your move learning!
