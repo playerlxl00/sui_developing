@@ -36,3 +36,9 @@ sui client balance
 # Now, publish the package to Testnet with the command:
 sui client publish
 
+# Interact with the Move package (Replace <PACKAGE_ID> with the package ID the output of the sui client publish command returned)
+sui client call --package <PACKAGE_ID> --module greeting --function new
+
+# To verify that the object contains the text "Hello world!", make a call to query the object's information (Replace <OBJECT_ID> with the value under Created Objects, ID)
+sui client object <OBJECT_ID>
+
