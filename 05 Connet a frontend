@@ -1,0 +1,15 @@
+# Install frontend dependencies
+
+# 1. Install pnpm
+npm install -g pnpm
+
+# 2. To check pnpm installation
+pnpm --version
+
+# 3. Navigate into the sui-stack-hello-world/ui before the command:
+pnpm install
+
+# 4. Run the React application
+pnpm dev
+
+# 5. Then, open http://localhost:5173/ in your browser. The app prompts you to connect your Slush wallet (You may firstly download the app). Click Connect Wallet, authenticate when prompted, then approve the connection
