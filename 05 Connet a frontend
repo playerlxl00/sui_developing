@@ -13,3 +13,9 @@ pnpm install
 pnpm dev
 
 # 5. Then, open http://localhost:5173/ in your browser. The app prompts you to connect your Slush wallet (You may firstly download the app). Click Connect Wallet, authenticate when prompted, then approve the connection
+
+# 6. Request SUI tokens for your Slush wallet (This is to ensure you have enough tokens in your wallet for gas fee) (Noting that the Slush wallet address is different and separate from the address created and used in the CLI)
+
+# 7. Make sure your Slush wallet is in Testnet
+
+# 8. 
