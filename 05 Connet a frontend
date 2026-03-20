@@ -1,21 +1,25 @@
 # Install frontend dependencies
 
-# 1. Install pnpm
+# 1. Request SUI tokens for your Slush wallet (This is to ensure you have enough tokens in your wallet for gas fee) (Noting that the Slush wallet address is different and separate from the address created and used in the CLI)
+
+# 2. Make sure your Slush wallet is in Testnet
+
+# 3. In file sui-stack-hello-world/ui/constants.ts, replace the address in "" by the PackageID created and used in the CLI (Reminder: plz notice it is the package id rather than the object id)
+
+# 4. Install pnpm
 npm install -g pnpm
 
-# 2. To check pnpm installation
+# 5. To check pnpm installation
 pnpm --version
 
-# 3. Navigate into the sui-stack-hello-world/ui before the command:
+# 6. Navigate into the sui-stack-hello-world/ui before the command:
 pnpm install
 
-# 4. Run the React application
+# 7. Run the React application
 pnpm dev
 
-# 5. Then, open http://localhost:5173/ in your browser. The app prompts you to connect your Slush wallet (You may firstly download the app). Click Connect Wallet, authenticate when prompted, then approve the connection
+# 8. Then, open http://localhost:5173/ in your browser. The app prompts you to connect your Slush wallet (You may firstly download the app). Click Connect Wallet, authenticate when prompted, then approve the connection
 
-# 6. Request SUI tokens for your Slush wallet (This is to ensure you have enough tokens in your wallet for gas fee) (Noting that the Slush wallet address is different and separate from the address created and used in the CLI)
+# 9. Next, click the Create Greeting button and approve, the browser window will display the Greeting object's ID and its content, which by default is "Hello world!"
 
-# 7. Make sure your Slush wallet is in Testnet
-
-# 8. 
+# 10. To change this text, enter a different greeting in the text box below the default value and click Update, approve
