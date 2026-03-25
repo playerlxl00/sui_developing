@@ -34,3 +34,92 @@ struct Stats has copy, store, drop {
     strength: u64,
     agility: u64,
 }
+
+# Note that not all things in sui can be stored, which means you can only lend them by & (we will further discuss), for example some system-level types:
+# TxContext: Transaction environment, for example sender, recipient, etc., discard right after transaction ending
+# UID: Object id card
+# Clock  Global clock, can only be read
+# Random  Random number generator, independent in each transaction
+
+# TxContext 的标准使用形式
+use sui::tx_context::{Self, TxContext};
+use sui::object::{Self, UID};
+use sui::transfer;
+
+// TxContext 作为参数，永远是 &mut
+public fun create_object(value: u64, ctx: &mut TxContext) {
+    // 1. 读取 tx_context 的信息
+    let sender = tx_context::sender(ctx);           // 谁在调用
+    let timestamp = tx_context::timestamp_ms(ctx);  // 什么时间
+    let epoch = tx_context::epoch(ctx);             // 当前纪元
+    
+    // 2. 用 ctx 生成新对象 ID
+    let new_id = object::new(ctx);
+    
+    // 3. 创建对象
+    let obj = MyObject {
+        id: new_id,
+        value: value,
+        created_by: sender,
+        created_at: timestamp,
+    };
+    
+    // 4. 转移给发送者
+    transfer::transfer(obj, sender);
+}
+
+// 多个函数之间传递 ctx
+public fun chain_calls(ctx: &mut TxContext) {
+    create_object(100, ctx);  // 同一个 ctx 传下去
+    create_object(200, ctx);  // ids_created 会连续递增
+}
+
+# UID 的标准使用形式
+use sui::object::{Self, UID, ID};
+use sui::tx_context::TxContext;
+
+// UID 总是作为对象的第一个字段
+struct MyObject has key {
+    id: UID,           // 必须是第一个字段
+    value: u64,
+}
+
+struct Container has key, store {
+    id: UID,
+    target_id: ID,     // ID 可以用来指向另一个对象
+}
+
+// 创建 UID：只能通过 object::new(ctx)
+public fun create_uid_example(ctx: &mut TxContext): UID {
+    object::new(ctx)   // 返回一个新的 UID
+}
+
+// UID 不能复制，只能转移
+public fun move_uid(uid: UID, new_owner: address) {
+    transfer::transfer(uid, new_owner);  // UID 本身也可以作为对象转移
+}
+
+// 获取对象的 ID（这是一个 ID 类型，不是 UID）
+public fun get_object_id(obj: &MyObject): ID {
+    object::id(obj)    // 返回 ID 类型的对象地址
+}
+
+// 存储别人对象的 ID
+public fun store_id(container: &mut Container, target: &MyObject) {
+    container.target_id = object::id(target);  // 存储的是 ID，不是 UID
+}
+
+# Clock 和 Random 快速说明
+use sui::clock::Clock;
+use sui::random::Random;
+
+// Clock：全局时钟，只能读时间
+public fun get_time(ctx: &TxContext, clock: &Clock) {
+    let now = clock::timestamp_ms(clock);  // 当前时间戳
+    // Clock 只有 &，没有 &mut，因为时间你不能改
+}
+
+// Random：随机数生成器，需要 &mut 因为它内部状态会变
+public fun roll_dice(rng: &mut Random, ctx: &TxContext) {
+    let roll = random::u64_range(rng, 1, 7);  // 1-6 随机数
+}
