@@ -1,0 +1,36 @@
+# Create an object (struct is like a table or database, an object is just a struct set at the very beginning, then you do some operations to the struct to make the object 'some kind of object')
+struct Object has key {
+    id: UID,
+    value: u64,
+}
+
+# Something before {} is 'Ability'
+# There are 4 common ability in sui:
+# key: Can be regard as object (has unique id) (for all objects)
+# store: Can be stored in other objects and freely transferred (for those objects needed to be transferred freely)
+# copy:	Can be copied	(for simple numerical types (such as configuration))
+# drop:	Can be discarded (no need for explicit destruction)	(temporary data)
+# Common combinations:
+// 1. Most basic object (cannot transfer freely)
+struct Trophy has key {
+    id: UID,
+    points: u64,
+}
+
+// 2. Object that can be transferred freely (e.g. NFT)
+struct NFT has key, store {
+    id: UID,
+    name: vector<u8>,
+}
+
+// 3. Objects that can be copied (e.g. configuration)
+struct Config has copy, drop {
+    version: u64,
+    fee_rate: u64,
+}
+
+// 4. Values that can be copied and stored
+struct Stats has copy, store, drop {
+    strength: u64,
+    agility: u64,
+}
