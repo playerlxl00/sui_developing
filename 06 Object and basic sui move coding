@@ -41,9 +41,18 @@ struct Stats has copy, store, drop {
 # Clock  Global clock, can only be read
 # Random  Random number generator, independent in each transaction
 
-&T: Immutable reference, can only be read, not written
-&mut T: Mutable reference, can be read and written
-T: Value (Ownership Transfer), full Ownership, Can Be Destroyed
+# &T: Immutable reference, can only be read, not written
+# &mut T: Mutable reference, can be read and written
+# T: Value (Ownership Transfer), full Ownership, Can Be Destroyed
+
+// This is the same as "f(x) = "，the thing before () is the 'f', and those inside () are parameters
+public fun create(value: u64, recipient: address, ctx: &mut TxContext) {
+    // Here is the detailed content for '=', which is the function body
+    transfer::public_transfer(
+        Object { id: object::new(ctx), value },
+        recipient,
+    )
+}
 
 # TxContext standard using format
 use sui::tx_context::{Self, TxContext};
