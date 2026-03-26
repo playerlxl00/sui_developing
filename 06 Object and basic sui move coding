@@ -57,10 +57,10 @@ public fun create_object(value: u64, ctx: &mut TxContext) {
     let timestamp = tx_context::timestamp_ms(ctx);  // What is the timepoint
     let epoch = tx_context::epoch(ctx);             // Current epoch
     
-    // 2. 用 ctx 生成新对象 ID
+    // 2. Create new object ID by ctx
     let new_id = object::new(ctx);
     
-    // 3. 创建对象
+    // 3. Create object
     let obj = MyObject {
         id: new_id,
         value: value,
@@ -68,11 +68,11 @@ public fun create_object(value: u64, ctx: &mut TxContext) {
         created_at: timestamp,
     };
     
-    // 4. 转移给发送者
+    // 4. Transfer to the sender
     transfer::transfer(obj, sender);
 }
 
-// 多个函数之间传递 ctx
+// Passing ctx between multiple functions
 public fun chain_calls(ctx: &mut TxContext) {
     create_object(100, ctx);  // 同一个 ctx 传下去
     create_object(200, ctx);  // ids_created 会连续递增
