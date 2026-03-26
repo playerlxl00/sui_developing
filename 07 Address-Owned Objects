@@ -1,3 +1,16 @@
 # 1. Create an object (follow the instructions in 06)
 
-#
+# 2. Give an address to the created object (logically, by transferring the object to an address)
+// Use the sui::transfer::transfer function if you are defining custom transfer rules for the object
+public fun transfer<T: key>(obj: T, recipient: address)
+
+// Use the sui::transfer::public_transfer function to create an address-owned object if the object has the store capability
+public fun public_transfer<T: key + store>(obj: T, recipient: address)
+
+// Comprehensive example:
+public fun create(value: u64, recipient: address, ctx: &mut TxContext) {
+    transfer::public_transfer(
+        Object { id: object::new(ctx), value },
+        recipient,
+    )
+}
