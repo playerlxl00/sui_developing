@@ -41,17 +41,21 @@ struct Stats has copy, store, drop {
 # Clock  Global clock, can only be read
 # Random  Random number generator, independent in each transaction
 
-# TxContext 的标准使用形式
+&T: Immutable reference, can only be read, not written
+&mut T: Mutable reference, can be read and written
+T: Value (Ownership Transfer), full Ownership, Can Be Destroyed
+
+# TxContext standard using format
 use sui::tx_context::{Self, TxContext};
 use sui::object::{Self, UID};
 use sui::transfer;
 
-// TxContext 作为参数，永远是 &mut
+// TxContext as a parameter, it is always &mut
 public fun create_object(value: u64, ctx: &mut TxContext) {
-    // 1. 读取 tx_context 的信息
-    let sender = tx_context::sender(ctx);           // 谁在调用
-    let timestamp = tx_context::timestamp_ms(ctx);  // 什么时间
-    let epoch = tx_context::epoch(ctx);             // 当前纪元
+    // 1. Read the information of tx_context
+    let sender = tx_context::sender(ctx);           // Who is making the call
+    let timestamp = tx_context::timestamp_ms(ctx);  // What is the timepoint
+    let epoch = tx_context::epoch(ctx);             // Current epoch
     
     // 2. 用 ctx 生成新对象 ID
     let new_id = object::new(ctx);
