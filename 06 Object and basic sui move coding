@@ -44,6 +44,7 @@ struct Stats has copy, store, drop {
 # &T: Immutable reference, can only be read, not written
 # &mut T: Mutable reference, can be read and written
 # T: Value (Ownership Transfer), full Ownership, Can Be Destroyed
+# We don't have 'mut T', because the overall idea is, if the ownership has already been transferred, you can do whatever changes or not, just decide by yourself. We only have to divide into categories to discuss only when it is being borrowed, to discuss whether or not you can make changes
 
 // This is the same as "f(x) = "，the thing before () is the 'f', and those inside () are parameters
 public fun create(value: u64, recipient: address, ctx: &mut TxContext) {
