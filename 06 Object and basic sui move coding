@@ -137,3 +137,5 @@ public fun get_time(ctx: &TxContext, clock: &Clock) {
 public fun roll_dice(rng: &mut Random, ctx: &TxContext) {
     let roll = random::u64_range(rng, 1, 7);  // Random numbers from 1 to 6
 }
+
+# In sui move, :: means to dive into a deeper layer of documents, just like the / in your computer folders
