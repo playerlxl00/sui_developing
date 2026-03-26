@@ -4,7 +4,7 @@ struct Object has key {
     value: u64,
 }
 
-# Something before {} is 'Ability'
+# Something before {} is 'Ability', which is a type being returned to
 # There are 4 common ability in sui:
 # key: Can be regard as object (has unique id) (for all objects)
 # store: Can be stored in other objects and freely transferred (for those objects needed to be transferred freely)
@@ -74,56 +74,56 @@ public fun create_object(value: u64, ctx: &mut TxContext) {
 
 // Passing ctx between multiple functions
 public fun chain_calls(ctx: &mut TxContext) {
-    create_object(100, ctx);  // 同一个 ctx 传下去
-    create_object(200, ctx);  // ids_created 会连续递增
+    create_object(100, ctx);  // Pass the same ctx down
+    create_object(200, ctx);  // The "ids_created" value will increase continuously
 }
 
-# UID 的标准使用形式
+# UID standard using format
 use sui::object::{Self, UID, ID};
 use sui::tx_context::TxContext;
 
-// UID 总是作为对象的第一个字段
+// UID is always the first field of the object
 struct MyObject has key {
-    id: UID,           // 必须是第一个字段
+    id: UID,           // Must be the first field of the object
     value: u64,
 }
 
 struct Container has key, store {
     id: UID,
-    target_id: ID,     // ID 可以用来指向另一个对象
+    target_id: ID,     // An ID can be used to point to another object
 }
 
-// 创建 UID：只能通过 object::new(ctx)
+// Create UID：only by object::new(ctx)
 public fun create_uid_example(ctx: &mut TxContext): UID {
-    object::new(ctx)   // 返回一个新的 UID
+    object::new(ctx)   // Return a new UID
 }
 
-// UID 不能复制，只能转移
+// UID cannot be copied, can only be transferred
 public fun move_uid(uid: UID, new_owner: address) {
-    transfer::transfer(uid, new_owner);  // UID 本身也可以作为对象转移
+    transfer::transfer(uid, new_owner);  // UID itself can be transferred as object
 }
 
-// 获取对象的 ID（这是一个 ID 类型，不是 UID）
+// Gather ID of object (This is an ID type, not UID)
 public fun get_object_id(obj: &MyObject): ID {
-    object::id(obj)    // 返回 ID 类型的对象地址
+    object::id(obj)    // Return the address of an object of the ID type
 }
 
-// 存储别人对象的 ID
+// Store the ID of other objects
 public fun store_id(container: &mut Container, target: &MyObject) {
-    container.target_id = object::id(target);  // 存储的是 ID，不是 UID
+    container.target_id = object::id(target);  // What is stored is ID rather than UID
 }
 
-# Clock 和 Random 快速说明
+# Quick Overview of Clock and Random
 use sui::clock::Clock;
 use sui::random::Random;
 
-// Clock：全局时钟，只能读时间
+// Clock: Global clock, can only read the time
 public fun get_time(ctx: &TxContext, clock: &Clock) {
-    let now = clock::timestamp_ms(clock);  // 当前时间戳
-    // Clock 只有 &，没有 &mut，因为时间你不能改
+    let now = clock::timestamp_ms(clock);  // Current timestamp
+    // Clock only use &, not &mut, because you can't change the time
 }
 
-// Random：随机数生成器，需要 &mut 因为它内部状态会变
+// Random：The random number generator, requiring &mut because its internal state will change
 public fun roll_dice(rng: &mut Random, ctx: &TxContext) {
-    let roll = random::u64_range(rng, 1, 7);  // 1-6 随机数
+    let roll = random::u64_range(rng, 1, 7);  // Random numbers from 1 to 6
 }
