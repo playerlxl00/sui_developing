@@ -12,15 +12,16 @@ choco install cmake -y
 # 4. 安装nasm
 choco install nasm -y
 
-# 5. 刷新环境
-Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-refreshenv
+# 5. 将nasm添加到系统环境变量
+// Win+X -> 系统 -> 高级系统设置 -> 环境变量 -> 注意这个界面上面一半是用户变量下面一半是系统变量，我们所有的操作都需要在系统变量也就是下半页面里面进行 -> PATH ->编辑 -> 新建 -> C:\Program Files\NASM
+// 添加系统环境变量后可能需要重启电脑电脑才能够识别到新增内容
 
-# 6. 检查安装情况
-cmake --version
-nasm --version
+# 6. 安装vs code C++编译器
+// 直接下载链接：https://aka.ms/vs/17/release/vs_BuildTools.exe
 
-# 7. 安装C++编译器
+# 7. 在系统PATH中添加 %USERPROFILE%\.cargo\bin
+// Win+X -> 系统 -> 高级系统设置 -> 环境变量 -> 注意这个界面上面一半是用户变量下面一半是系统变量，我们所有的操作都需要在系统变量也就是下半页面里面进行 -> PATH ->编辑 -> 新建 -> %USERPROFILE%\.cargo\bin -> 调整到最上方
+// 添加系统环境变量后可能需要重启电脑电脑才能够识别到新增内容
 
 # 8. 用 cargo 安装 Sui
 # 安装 testnet 版本（推荐）
