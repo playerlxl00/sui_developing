@@ -20,7 +20,9 @@ refreshenv
 cmake --version
 nasm --version
 
-# 7. 用 cargo 安装 Sui
+# 7. 安装C++编译器
+
+# 8. 用 cargo 安装 Sui
 # 安装 testnet 版本（推荐）
 cargo install --locked --git https://github.com/MystenLabs/sui.git --branch testnet sui
 sui --version
