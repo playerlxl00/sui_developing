@@ -1,54 +1,26 @@
-# Step 1: Install sui (We use suiup to install is for more conveniently updating sui)
-# Install suiup
-cargo install --git https://github.com/MystenLabs/suiup.git --locked
+# In powershell
+# 1. 安装Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-suiup install sui@testnet   # Install testnet
-suiup install sui@devnet    # Install devnet  
-suiup install sui@mainnet   # Install mainnet
-
-# Check all versions installed
-suiup show
-# Something like these show up
-#   sui@testnet-1.40.0
-#   sui@devnet-1.41.0
-#   sui@mainnet-1.39.0
-
-# If you haven't set your path yet, your terminal will show:
-# WARNING: [] is not in your PATH
-# And you only have to follow instructions in your terminal like this:
-
-# To add it to your PATH:
-# 1. Press Win + X and select 'System'
-# 2. Click on 'Advanced system settings (might find it on the right side)'
-# 3. Click on 'Environment Variables'
-# 4. Under 'User variables', find and select 'Path'
-# 5. Click 'Edit'
-# 6. Click 'New'
-# 7. Add the following path:
-    []
-# 8. Click 'OK' on all windows
-# 9. Restart your terminal
-
-# If you already have another sui in your computer, just move this one above the old one in the path
-
-# You can switch the default one at any time
-suiup default set sui@mainnet  # Switch to mainnet
-sui --version  # Now it's mainnet
-
-suiup default set sui@testnet  # Switch to testnet
-sui --version  # Now it's testnet
-
-# If you want to update your sui
-suiup update sui@testnet
-suiup update sui@mainnet
-suiup update sui@devnet
-
-# Step 2: Install Rust & Cargo
-Go to https://www.rust-lang.org/tools/install
-
-# If already installed plz check if it has been updated to the latest version:
-rustup update stable
-
-# To check if they are installed successfully: Close and reopen your powershell and
+# 2. 安装 Rust (自带cargo)
+// 访问 https://rustup.rs/ 下载 rustup-init.exe 并运行，选择默认选项（输入 1 回车）。
 rustc --version
-cargo --version
+
+# 3. 安装 CMake
+choco install cmake -y
+
+# 4. 安装nasm
+choco install nasm -y
+
+# 5. 刷新环境
+Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+refreshenv
+
+# 6. 检查安装情况
+cmake --version
+nasm --version
+
+# 7. 用 cargo 安装 Sui
+# 安装 testnet 版本（推荐）
+cargo install --locked --git https://github.com/MystenLabs/sui.git --branch testnet sui
+sui --version
