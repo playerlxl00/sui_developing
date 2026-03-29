@@ -1,3 +1,11 @@
+每个对象都必须有 Owner，只是类型不同：
+Owner 类型	                 | 含义	            | 谁能修改
+Account Address (0xcf5b...)	 | 归某个地址所有	| 该地址的私钥持有者
+Object (0xabc1...)	         | 归另一个对象所有	| 那个对象的 Owner
+Shared	                     | 共享对象	        | 任何人都能修改（需共识）
+Immutable	                 | 不可变对象	    | 没人能修改（只能读）
+"没有 Owner"在 Sui 里不存在，最小单位是 Immutable（只读）。
+
 # 1. Create an object (follow the instructions in 06)
 
 # 2. Give an address to the created object (logically, by transferring the object to an address)
